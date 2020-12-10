@@ -7,9 +7,7 @@ class Solution:
                 if idx != count:
                     if nums[idx] + num == target:
                         if idx < count:
-                            # print('[', idx, ',', count, ']')
                             return [idx,count]
                         else:
-                            # print('[', count, ',', idx, ']')
                             return [count,idx]
             count += 1
