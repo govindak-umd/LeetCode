@@ -1,6 +1,6 @@
 class Solution {
 public:
-    bool isPalindorme(string s){
+    bool isPalindrome(string s){
     if( equal(s.begin(), s.begin() + s.size()/2, s.rbegin()) )
         return true;
     else
@@ -9,21 +9,31 @@ public:
     }
     
     string longestPalindrome(string s) {
-        std::vector<char>palindrome_vec;
-        for (auto every_char: s){
-            palindrome_vec.push_back(every_char);
-        }
-        int vec_len = palindrome_vec.size();
-        string temp = "";
-        for (int idx = 0; idx < vec_len; idx++){
-        }
-            
-        if (isPalindorme(s) == true){
-            return "yes";
+        int len_string = s.size();
+        string best_temp;
+        string temp;
+        int temp_len = 0;
+        int temp_len_sub = 0;
+        if(s.size() == 1){
+            return s;
         }
         else{
-            return "no";
+            for (int idx = 0; idx < len_string; idx++){
+                for(int idx_sub = idx; idx_sub < len_string; idx_sub++){
+                    temp = s.substr(idx, idx_sub);
+                    std::cout << temp << std::endl;
+                    if (isPalindrome(temp) == true){
+                        std::cout << "Palindrome " << temp << std::endl;
+                        temp_len_sub = temp.size();
+                        if (temp_len_sub >= temp_len){
+                            best_temp = temp;
+                            temp_len = temp_len_sub;
+                        }
+                    }
+                }
+            }
         }
+        return best_temp;
     }
 
             
