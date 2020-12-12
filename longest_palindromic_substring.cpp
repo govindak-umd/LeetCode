@@ -1,3 +1,7 @@
+// This solution is the brute force approach. It works and passed a number of test
+// cases. However, might cause an issue of time limit exceeded, hence need to refine the code
+// a bit. However, the logic is right and will output the correct solution.
+
 class Solution {
 public:
     bool isPalindrome(string s){
@@ -7,7 +11,6 @@ public:
         return false;
         
     }
-    
     string longestPalindrome(string s) {
         int len_string = s.size();
         string best_temp;
@@ -20,10 +23,8 @@ public:
         else{
             for (int idx = 0; idx < len_string; idx++){
                 for(int idx_sub = idx; idx_sub < len_string; idx_sub++){
-                    temp = s.substr(idx, idx_sub);
-                    std::cout << temp << std::endl;
+                    temp = s.substr(idx, len_string - idx_sub);
                     if (isPalindrome(temp) == true){
-                        std::cout << "Palindrome " << temp << std::endl;
                         temp_len_sub = temp.size();
                         if (temp_len_sub >= temp_len){
                             best_temp = temp;
@@ -35,7 +36,5 @@ public:
         }
         return best_temp;
     }
-
-            
     
 };
