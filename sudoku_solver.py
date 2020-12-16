@@ -25,6 +25,8 @@ class Solution:
         all_possible_box_8 = []
         all_possible_box_9 = []
 
+        all_numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+
         def extractEachSquare(board):
 
             for row in range(9):
@@ -52,7 +54,6 @@ class Solution:
             # print(box_9)
 
         def checkPossibilities():
-            all_numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
 
             for pos in all_numbers:
                 for i in range(3):
@@ -113,4 +114,40 @@ class Solution:
 
         extractEachSquare(board)
         checkPossibilities()
+
+        solved = False
+
+        for row_idx in range(9):
+            for col_idx in range(9):
+                if row_idx < 3 and col_idx < 3:
+                    # box_1
+                    pass
+                elif row_idx < 3 and 3 < col_idx < 6:
+                    # box_2
+                    pass
+                elif row_idx < 3 and 6 < col_idx < 9:
+                    # box_3
+                    pass
+
+                elif 3 < row_idx < 6 and col_idx < 3:
+                    # box_4
+                    pass
+                elif 3 < row_idx < 6 and 3 < col_idx < 6:
+                    # box_5
+                    pass
+                elif 3 < row_idx < 6 and 6 < col_idx < 9:
+                    # box_6
+                    pass
+
+                elif 6 < row_idx < 9 and col_idx < 3:
+                    # box_7
+                    pass
+                elif 6 < row_idx < 9 and 3 < col_idx < 6:
+                    # box_8
+                    pass
+                elif 6 < row_idx < 9 and 6 < col_idx < 9:
+                    # box_9
+                    pass
+
+
 
