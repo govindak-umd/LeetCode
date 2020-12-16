@@ -15,6 +15,16 @@ class Solution:
         box_8 = []
         box_9 = []
 
+        all_possible_box_1 = []
+        all_possible_box_2 = []
+        all_possible_box_3 = []
+        all_possible_box_4 = []
+        all_possible_box_5 = []
+        all_possible_box_6 = []
+        all_possible_box_7 = []
+        all_possible_box_8 = []
+        all_possible_box_9 = []
+
         def extractEachSquare(board):
 
             for row in range(9):
@@ -43,16 +53,6 @@ class Solution:
 
         def checkPossibilities():
             all_numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
-
-            all_possible_box_1 = []
-            all_possible_box_2 = []
-            all_possible_box_3 = []
-            all_possible_box_4 = []
-            all_possible_box_5 = []
-            all_possible_box_6 = []
-            all_possible_box_7 = []
-            all_possible_box_8 = []
-            all_possible_box_9 = []
 
             for pos in all_numbers:
                 for i in range(3):
@@ -96,11 +96,13 @@ class Solution:
         def findinRow(num, row):
             if num in row:
                 return False
+            return True
 
         def findinColumn(num, board, col):
             for idx in range(9):
-                if num in board[idx][col]:
+                if num == board[idx][col]:
                     return False
+            return True
 
         def findinSquare(num):
             for i in range(3):
