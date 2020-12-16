@@ -1,0 +1,33 @@
+Sudoko Solver Notes
+
+	Language:
+
+		Python
+
+	Rules:
+
+	Have to get a number only ones in 
+		a row
+		a column
+		in a 3 by 3 square
+
+	Functions :
+
+		To find any number in a row
+		To find any number in a column
+		To find in the square
+
+		Main sudoku func
+
+	Strat 1:
+
+		Create a list from 1 to 9
+
+		For each square, select what all numbers can be possible and create a sub-list
+
+		Check for each number in this sub-list check if it is in the 3 by 3 square,
+			if not, check if the number is in the row, 
+				if not check if the number is in the column,
+					if not: insert the number in the square
+
+
