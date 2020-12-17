@@ -45,7 +45,7 @@ class Solution:
 
             # print(box_1)
             # print(box_2)
-            print(box_3)
+            # print(box_3)
             # print(box_4)
             # print(box_5)
             # print(box_6)
@@ -86,7 +86,7 @@ class Solution:
                         all_possible_box_9.append(pos)
             # print(all_possible_box_1)
             # print(all_possible_box_2)
-            print(all_possible_box_3)
+            # print(all_possible_box_3)
             # print(all_possible_box_4)
             # print(all_possible_box_5)
             # print(all_possible_box_6)
@@ -112,6 +112,13 @@ class Solution:
                 else:
                     return False
 
+        def checkAllFilled(board):
+            for row_idx in range(9):
+                for col_idx in range(9):
+                    if board[row_idx][col_idx] == '.':
+                        return True
+            return False
+
         extractEachSquare(board)
         checkPossibilities()
         solved = False
@@ -120,7 +127,11 @@ class Solution:
 
         for row_idx in range(9):
             for col_idx in range(9):
-                filledNumDic[(row_idx, col_idx)] = []
+                if board[row_idx][col_idx] == '.':
+                    filledNumDic[(row_idx, col_idx)] = []
+
+        all_filled = checkAllFilled(board)
+        real_board = board
 
         for row_idx in range(9):
             for col_idx in range(9):
@@ -146,16 +157,16 @@ class Solution:
 
                 elif row_idx < 3 and 6 <= col_idx < 9:
                     for num in all_possible_box_3:
-                        print('trying : ', num)
-                        print('findinRow(num, board[row_idx])', findinRow(num, board[row_idx]))
-                        print('findinColumn(num, board, col_idx)', findinColumn(num, board, col_idx))
-                        print('filledNumDic[(row_idx,col_idx)]', filledNumDic[(row_idx, col_idx)])
+                        # print('trying : ', num, 'in :', row_idx , ' ',col_idx)
+                        # print('findinRow(num, board[row_idx])',findinRow(num, board[row_idx]))
+                        # print('findinColumn(num, board, col_idx)',findinColumn(num, board, col_idx))
+                        # print('filledNumDic[(row_idx,col_idx)]',filledNumDic[(row_idx,col_idx)])
                         if (findinRow(num, board[row_idx]) == False) and (
                                 findinColumn(num, board, col_idx) == False) and (
                                 findinSquare(num, box_3) == False) and (
                                 box_3[row_idx][col_idx - 6] not in all_numbers) and (
                                 num not in filledNumDic[(row_idx, col_idx)]):
-                            print('success > ', num)
+                            # print('success > ',num)
                             board[row_idx][col_idx] = num
                             filledNumDic[(row_idx, col_idx)].append(num)
 
@@ -214,5 +225,7 @@ class Solution:
                                 num not in filledNumDic[(row_idx, col_idx)]):
                             board[row_idx][col_idx] = num
                             filledNumDic[(row_idx, col_idx)].append(num)
-        print(board)
+
+                            # print(board)
         print(filledNumDic)
+        # print(checkAllFilled(board))
