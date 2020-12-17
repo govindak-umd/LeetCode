@@ -123,115 +123,117 @@ class Solution:
         checkPossibilities()
         solved = False
 
-        filledNumDic = {}
-
-        for row_idx in range(9):
-            for col_idx in range(9):
-                if board[row_idx][col_idx] == '.':
-                    filledNumDic[(row_idx, col_idx)] = []
-
         all_filled = checkAllFilled(board)
-        real_board = board
+        for loop in range(20):
+            filledNumDic = {}
+            for row_idx in range(9):
+                for col_idx in range(9):
+                    if board[row_idx][col_idx] == '.':
+                        filledNumDic[(row_idx, col_idx)] = []
 
-        for row_idx in range(9):
-            for col_idx in range(9):
-                if row_idx < 3 and col_idx < 3:
-                    for num in all_possible_box_1:
-                        if (findinRow(num, board[row_idx]) == False) and (
-                                findinColumn(num, board, col_idx) == False) and (
-                                findinSquare(num, box_1) == False) and (
-                                box_1[row_idx][col_idx] not in all_numbers) and (
-                                num not in filledNumDic[(row_idx, col_idx)]):
-                            # board[row_idx][col_idx] = num
-                            filledNumDic[(row_idx, col_idx)].append(num)
+            real_board = board
 
-                elif row_idx < 3 and 3 <= col_idx < 6:
-                    for num in all_possible_box_2:
-                        if (findinRow(num, board[row_idx]) == False) and (
-                                findinColumn(num, board, col_idx) == False) and (
-                                findinSquare(num, box_2) == False) and (
-                                box_2[row_idx][col_idx - 3] not in all_numbers) and (
-                                num not in filledNumDic[(row_idx, col_idx)]):
-                            # board[row_idx][col_idx] = num
-                            filledNumDic[(row_idx, col_idx)].append(num)
+            for row_idx in range(9):
+                for col_idx in range(9):
+                    if row_idx < 3 and col_idx < 3:
+                        for num in all_possible_box_1:
+                            if (findinRow(num, board[row_idx]) == False) and (
+                                    findinColumn(num, board, col_idx) == False) and (
+                                    findinSquare(num, box_1) == False) and (
+                                    box_1[row_idx][col_idx] not in all_numbers) and (
+                                    num not in filledNumDic[(row_idx, col_idx)]):
+                                # board[row_idx][col_idx] = num
+                                filledNumDic[(row_idx, col_idx)].append(num)
 
-                elif row_idx < 3 and 6 <= col_idx < 9:
-                    for num in all_possible_box_3:
-                        # print('trying : ', num, 'in :', row_idx , ' ',col_idx)
-                        # print('findinRow(num, board[row_idx])',findinRow(num, board[row_idx]))
-                        # print('findinColumn(num, board, col_idx)',findinColumn(num, board, col_idx))
-                        # print('filledNumDic[(row_idx,col_idx)]',filledNumDic[(row_idx,col_idx)])
-                        if (findinRow(num, board[row_idx]) == False) and (
-                                findinColumn(num, board, col_idx) == False) and (
-                                findinSquare(num, box_3) == False) and (
-                                box_3[row_idx][col_idx - 6] not in all_numbers) and (
-                                num not in filledNumDic[(row_idx, col_idx)]):
-                            # print('success > ',num)
-                            # board[row_idx][col_idx] = num
-                            filledNumDic[(row_idx, col_idx)].append(num)
+                    elif row_idx < 3 and 3 <= col_idx < 6:
+                        for num in all_possible_box_2:
+                            if (findinRow(num, board[row_idx]) == False) and (
+                                    findinColumn(num, board, col_idx) == False) and (
+                                    findinSquare(num, box_2) == False) and (
+                                    box_2[row_idx][col_idx - 3] not in all_numbers) and (
+                                    num not in filledNumDic[(row_idx, col_idx)]):
+                                # board[row_idx][col_idx] = num
+                                filledNumDic[(row_idx, col_idx)].append(num)
 
-                elif 3 <= row_idx < 6 and col_idx < 3:
-                    for num in all_possible_box_4:
-                        if (findinRow(num, board[row_idx]) == False) and (
-                                findinColumn(num, board, col_idx) == False) and (
-                                findinSquare(num, box_4) == False) and (
-                                box_4[row_idx - 3][col_idx] not in all_numbers) and (
-                                num not in filledNumDic[(row_idx, col_idx)]):
-                            # board[row_idx][col_idx] = num
-                            filledNumDic[(row_idx, col_idx)].append(num)
-                elif 3 <= row_idx < 6 and 3 <= col_idx < 6:
-                    for num in all_possible_box_5:
-                        if (findinRow(num, board[row_idx]) == False) and (
-                                findinColumn(num, board, col_idx) == False) and (
-                                findinSquare(num, box_5) == False) and (
-                                box_5[row_idx - 3][col_idx - 3] not in all_numbers) and (
-                                num not in filledNumDic[(row_idx, col_idx)]):
-                            # board[row_idx][col_idx] = num
-                            filledNumDic[(row_idx, col_idx)].append(num)
-                elif 3 <= row_idx < 6 and 6 <= col_idx < 9:
-                    for num in all_possible_box_6:
-                        if (findinRow(num, board[row_idx]) == False) and (
-                                findinColumn(num, board, col_idx) == False) and (
-                                findinSquare(num, box_6) == False) and (
-                                box_6[row_idx - 3][col_idx - 6] not in all_numbers) and (
-                                num not in filledNumDic[(row_idx, col_idx)]):
-                            # board[row_idx][col_idx] = num
-                            filledNumDic[(row_idx, col_idx)].append(num)
+                    elif row_idx < 3 and 6 <= col_idx < 9:
+                        for num in all_possible_box_3:
+                            # print('trying : ', num, 'in :', row_idx , ' ',col_idx)
+                            # print('findinRow(num, board[row_idx])',findinRow(num, board[row_idx]))
+                            # print('findinColumn(num, board, col_idx)',findinColumn(num, board, col_idx))
+                            # print('filledNumDic[(row_idx,col_idx)]',filledNumDic[(row_idx,col_idx)])
+                            if (findinRow(num, board[row_idx]) == False) and (
+                                    findinColumn(num, board, col_idx) == False) and (
+                                    findinSquare(num, box_3) == False) and (
+                                    box_3[row_idx][col_idx - 6] not in all_numbers) and (
+                                    num not in filledNumDic[(row_idx, col_idx)]):
+                                # print('success > ',num)
+                                # board[row_idx][col_idx] = num
+                                filledNumDic[(row_idx, col_idx)].append(num)
 
-                elif 6 <= row_idx < 9 and col_idx < 3:
-                    for num in all_possible_box_7:
-                        if (findinRow(num, board[row_idx]) == False) and (
-                                findinColumn(num, board, col_idx) == False) and (
-                                findinSquare(num, box_7) == False) and (
-                                box_7[row_idx - 6][col_idx] not in all_numbers) and (
-                                num not in filledNumDic[(row_idx, col_idx)]):
-                            # board[row_idx][col_idx] = num
-                            filledNumDic[(row_idx, col_idx)].append(num)
-                elif 6 <= row_idx < 9 and 3 <= col_idx < 6:
-                    for num in all_possible_box_8:
-                        if (findinRow(num, board[row_idx]) == False) and (
-                                findinColumn(num, board, col_idx) == False) and (
-                                findinSquare(num, box_8) == False) and (
-                                box_8[row_idx - 6][col_idx - 3] not in all_numbers) and (
-                                num not in filledNumDic[(row_idx, col_idx)]):
-                            # board[row_idx][col_idx] = num
-                            filledNumDic[(row_idx, col_idx)].append(num)
-                elif 6 <= row_idx < 9 and 6 <= col_idx < 9:
-                    for num in all_possible_box_9:
-                        if (findinRow(num, board[row_idx]) == False) and (
-                                findinColumn(num, board, col_idx) == False) and (
-                                findinSquare(num, box_9) == False) and (
-                                box_9[row_idx - 6][col_idx - 6] not in all_numbers) and (
-                                num not in filledNumDic[(row_idx, col_idx)]):
-                            # board[row_idx][col_idx] = num
-                            filledNumDic[(row_idx, col_idx)].append(num)
+                    elif 3 <= row_idx < 6 and col_idx < 3:
+                        for num in all_possible_box_4:
+                            if (findinRow(num, board[row_idx]) == False) and (
+                                    findinColumn(num, board, col_idx) == False) and (
+                                    findinSquare(num, box_4) == False) and (
+                                    box_4[row_idx - 3][col_idx] not in all_numbers) and (
+                                    num not in filledNumDic[(row_idx, col_idx)]):
+                                # board[row_idx][col_idx] = num
+                                filledNumDic[(row_idx, col_idx)].append(num)
+                    elif 3 <= row_idx < 6 and 3 <= col_idx < 6:
+                        for num in all_possible_box_5:
+                            if (findinRow(num, board[row_idx]) == False) and (
+                                    findinColumn(num, board, col_idx) == False) and (
+                                    findinSquare(num, box_5) == False) and (
+                                    box_5[row_idx - 3][col_idx - 3] not in all_numbers) and (
+                                    num not in filledNumDic[(row_idx, col_idx)]):
+                                # board[row_idx][col_idx] = num
+                                filledNumDic[(row_idx, col_idx)].append(num)
+                    elif 3 <= row_idx < 6 and 6 <= col_idx < 9:
+                        for num in all_possible_box_6:
+                            if (findinRow(num, board[row_idx]) == False) and (
+                                    findinColumn(num, board, col_idx) == False) and (
+                                    findinSquare(num, box_6) == False) and (
+                                    box_6[row_idx - 3][col_idx - 6] not in all_numbers) and (
+                                    num not in filledNumDic[(row_idx, col_idx)]):
+                                # board[row_idx][col_idx] = num
+                                filledNumDic[(row_idx, col_idx)].append(num)
 
-        keys_to_be_deleted = []
-        for k, v in filledNumDic.items():
-            if len(v) == 1:
-                board[k[0]][k[1]] = v[0]
-                keys_to_be_deleted.append(k)
-        for k in keys_to_be_deleted:
-            del filledNumDic[k]
-        print(board)
+                    elif 6 <= row_idx < 9 and col_idx < 3:
+                        for num in all_possible_box_7:
+                            if (findinRow(num, board[row_idx]) == False) and (
+                                    findinColumn(num, board, col_idx) == False) and (
+                                    findinSquare(num, box_7) == False) and (
+                                    box_7[row_idx - 6][col_idx] not in all_numbers) and (
+                                    num not in filledNumDic[(row_idx, col_idx)]):
+                                # board[row_idx][col_idx] = num
+                                filledNumDic[(row_idx, col_idx)].append(num)
+                    elif 6 <= row_idx < 9 and 3 <= col_idx < 6:
+                        for num in all_possible_box_8:
+                            if (findinRow(num, board[row_idx]) == False) and (
+                                    findinColumn(num, board, col_idx) == False) and (
+                                    findinSquare(num, box_8) == False) and (
+                                    box_8[row_idx - 6][col_idx - 3] not in all_numbers) and (
+                                    num not in filledNumDic[(row_idx, col_idx)]):
+                                # board[row_idx][col_idx] = num
+                                filledNumDic[(row_idx, col_idx)].append(num)
+                    elif 6 <= row_idx < 9 and 6 <= col_idx < 9:
+                        for num in all_possible_box_9:
+                            if (findinRow(num, board[row_idx]) == False) and (
+                                    findinColumn(num, board, col_idx) == False) and (
+                                    findinSquare(num, box_9) == False) and (
+                                    box_9[row_idx - 6][col_idx - 6] not in all_numbers) and (
+                                    num not in filledNumDic[(row_idx, col_idx)]):
+                                # board[row_idx][col_idx] = num
+                                filledNumDic[(row_idx, col_idx)].append(num)
+
+            keys_to_be_deleted = []
+            for k, v in filledNumDic.items():
+                if len(v) == 1:
+                    board[k[0]][k[1]] = v[0]
+                    keys_to_be_deleted.append(k)
+            for k in keys_to_be_deleted:
+                del filledNumDic[k]
+
+            print(len(filledNumDic))
+
 
