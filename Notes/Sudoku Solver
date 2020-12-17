@@ -13,7 +13,7 @@ Sudoko Solver Notes
 
 	Functions :
 
-		To find any number in a row
+			To find any number in a row
 		To find any number in a column
 		To find in the square
 

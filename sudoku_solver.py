@@ -43,7 +43,7 @@ class Solution:
                     box_8.append(board[row][3:6])
                     box_9.append(board[row][6:9])
 
-            print(box_1)
+            # print(box_1)
             # print(box_2)
             # print(box_3)
             # print(box_4)
@@ -84,7 +84,7 @@ class Solution:
                     if pos not in box_9[0] and pos not in box_9[1] and pos not in box_9[
                         2] and pos not in all_possible_box_9:
                         all_possible_box_9.append(pos)
-            print(all_possible_box_1)
+            # print(all_possible_box_1)
             # print(all_possible_box_2)
             # print(all_possible_box_3)
             # print(all_possible_box_4)
@@ -114,49 +114,70 @@ class Solution:
 
         extractEachSquare(board)
         checkPossibilities()
-        print('TEST : ', findinRow('4', board[0]))
-        print('board[0]', board[0])
         solved = False
 
         for row_idx in range(9):
             for col_idx in range(9):
                 if row_idx < 3 and col_idx < 3:
-                    print('row_idx : ', row_idx, ' col_idx : ', col_idx)
                     for num in all_possible_box_1:
-                        print('num : ', num)
-                        # print('box_1', box_1)
-                        # print(' findinRow(num, board[row_idx]) : ', findinRow(num, board[row_idx]))
-                        # print('findinColumn(num, board, col_idx)', findinColumn(num, board, col_idx))
-                        # print('findinSquare(num, box_1)', findinSquare(num, box_1))
                         if (findinRow(num, board[row_idx]) == False) and (
                                 findinColumn(num, board, col_idx) == False) and (
                                 findinSquare(num, box_1) == False) and (box_1[row_idx][col_idx] not in all_numbers):
-                            print('entered')
                             board[row_idx][col_idx] = num
 
-                # elif row_idx < 3 and 3 < col_idx < 6:
-                #     # box_2
-                #     pass
-                # elif row_idx < 3 and 6 < col_idx < 9:
-                #     # box_3
-                #     pass
-                #
-                # elif 3 < row_idx < 6 and col_idx < 3:
-                #     # box_4
-                #     pass
-                # elif 3 < row_idx < 6 and 3 < col_idx < 6:
-                #     # box_5
-                #     pass
-                # elif 3 < row_idx < 6 and 6 < col_idx < 9:
-                #     # box_6
-                #     pass
-                #
-                # elif 6 < row_idx < 9 and col_idx < 3:
-                #     # box_7
-                #     pass
-                # elif 6 < row_idx < 9 and 3 < col_idx < 6:
-                #     # box_8
-                #     pass
-                # elif 6 < row_idx < 9 and 6 < col_idx < 9:
-                #     # box_9
-                #     pass
+                elif row_idx < 3 and 3 <= col_idx < 6:
+                    for num in all_possible_box_2:
+                        if (findinRow(num, board[row_idx]) == False) and (
+                                findinColumn(num, board, col_idx) == False) and (
+                                findinSquare(num, box_2) == False) and (box_2[row_idx][col_idx - 3] not in all_numbers):
+                            board[row_idx][col_idx] = num
+
+                elif row_idx < 3 and 6 <= col_idx < 9:
+                    for num in all_possible_box_3:
+                        if (findinRow(num, board[row_idx]) == False) and (
+                                findinColumn(num, board, col_idx) == False) and (
+                                findinSquare(num, box_3) == False) and (box_3[row_idx][col_idx - 6] not in all_numbers):
+                            board[row_idx][col_idx] = num
+
+                elif 3 <= row_idx < 6 and col_idx < 3:
+                    for num in all_possible_box_4:
+                        if (findinRow(num, board[row_idx]) == False) and (
+                                findinColumn(num, board, col_idx) == False) and (
+                                findinSquare(num, box_4) == False) and (box_4[row_idx - 3][col_idx] not in all_numbers):
+                            board[row_idx][col_idx] = num
+                elif 3 <= row_idx < 6 and 3 <= col_idx < 6:
+                    for num in all_possible_box_5:
+                        if (findinRow(num, board[row_idx]) == False) and (
+                                findinColumn(num, board, col_idx) == False) and (
+                                findinSquare(num, box_5) == False) and (
+                                box_5[row_idx - 3][col_idx - 3] not in all_numbers):
+                            board[row_idx][col_idx] = num
+                elif 3 <= row_idx < 6 and 6 <= col_idx < 9:
+                    for num in all_possible_box_6:
+                        if (findinRow(num, board[row_idx]) == False) and (
+                                findinColumn(num, board, col_idx) == False) and (
+                                findinSquare(num, box_6) == False) and (
+                                box_6[row_idx - 3][col_idx - 6] not in all_numbers):
+                            board[row_idx][col_idx] = num
+
+                elif 6 <= row_idx < 9 and col_idx < 3:
+                    for num in all_possible_box_7:
+                        if (findinRow(num, board[row_idx]) == False) and (
+                                findinColumn(num, board, col_idx) == False) and (
+                                findinSquare(num, box_7) == False) and (box_7[row_idx - 6][col_idx] not in all_numbers):
+                            board[row_idx][col_idx] = num
+                elif 6 <= row_idx < 9 and 3 <= col_idx < 6:
+                    for num in all_possible_box_8:
+                        if (findinRow(num, board[row_idx]) == False) and (
+                                findinColumn(num, board, col_idx) == False) and (
+                                findinSquare(num, box_8) == False) and (
+                                box_8[row_idx - 6][col_idx - 3] not in all_numbers):
+                            board[row_idx][col_idx] = num
+                elif 6 <= row_idx < 9 and 6 <= col_idx < 9:
+                    for num in all_possible_box_9:
+                        if (findinRow(num, board[row_idx]) == False) and (
+                                findinColumn(num, board, col_idx) == False) and (
+                                findinSquare(num, box_9) == False) and (
+                                box_9[row_idx - 6][col_idx - 6] not in all_numbers):
+                            board[row_idx][col_idx] = num
+        print(board)
