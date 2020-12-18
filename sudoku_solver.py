@@ -28,7 +28,6 @@ class Solution:
         all_numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
 
         def extractEachSquare(board):
-
             for row in range(9):
                 if 0 <= row <= 2:
                     box_1.append(board[row][0:3])
@@ -118,6 +117,9 @@ class Solution:
                     if board[row_idx][col_idx] == '.':
                         return True
             return False
+
+        def completeSquare(box):
+            pass
 
         extractEachSquare(board)
         checkPossibilities()
@@ -229,7 +231,7 @@ class Solution:
                                     num not in filledNumDic[(row_idx, col_idx)]):
                                 # board[row_idx][col_idx] = num
                                 filledNumDic[(row_idx, col_idx)].append(num)
-
+            extractEachSquare(board)
             keys_to_be_deleted = []
             while (keys_to_be_deleted == []):
                 for k, v in filledNumDic.items():
@@ -244,7 +246,14 @@ class Solution:
                 else:
                     check = False
                     break
+        # print(filledNumDic)
+        print(len(filledNumDic))
+        last_filledNumDic = filledNumDic
+        for k, v in filledNumDic.items():
+            if len(v) == 2:
+                print(k)
 
-            print(len(filledNumDic))
+        print(box_2[-3:])
+
 
 
