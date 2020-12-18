@@ -124,7 +124,11 @@ class Solution:
         solved = False
 
         all_filled = checkAllFilled(board)
-        for loop in range(20):
+        curr_len = 0
+        past_len = 0
+        check = True
+
+        while check == True:
             filledNumDic = {}
             for row_idx in range(9):
                 for col_idx in range(9):
@@ -227,12 +231,19 @@ class Solution:
                                 filledNumDic[(row_idx, col_idx)].append(num)
 
             keys_to_be_deleted = []
-            for k, v in filledNumDic.items():
-                if len(v) == 1:
-                    board[k[0]][k[1]] = v[0]
-                    keys_to_be_deleted.append(k)
-            for k in keys_to_be_deleted:
-                del filledNumDic[k]
+            while (keys_to_be_deleted == []):
+                for k, v in filledNumDic.items():
+                    if len(v) == 1:
+                        board[k[0]][k[1]] = v[0]
+                        keys_to_be_deleted.append(k)
+                for k in keys_to_be_deleted:
+                    del filledNumDic[k]
+                curr_len = len(filledNumDic)
+                if past_len != curr_len:
+                    past_len = curr_len
+                else:
+                    check = False
+                    break
 
             print(len(filledNumDic))
 
