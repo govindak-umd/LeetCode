@@ -119,7 +119,30 @@ class Solution:
             return False
 
         def completeSquare(box):
-            pass
+            box_list = box[-3:]
+            flat_list = []
+
+            for sublist in box_list:
+                for item in sublist:
+                    flat_list.append(item)
+            c = '.'
+            matches = [x for x in flat_list if x == c]
+            row = 0
+            col = 0
+            if len(matches) == 1:
+                for row in range(3):
+                    for col in range(3):
+                        if box_list[row][col] == c:
+                            idx = flat_list.index(c)
+                            for i in all_numbers:
+                                if i not in flat_list:
+                                    if (box == box_1) or (box == box_4) or (box == box_7):
+                                        board[row][col] = i
+                                    if (box == box_2) or (box == box_5) or (box == box_8):
+                                        print('here', row_idx, col_idx, box)
+                                        board[row][col + 3] = i
+                                    if (box == box_3) or (box == box_6) or (box == box_9):
+                                        board[row][col + 6] = i
 
         extractEachSquare(board)
         checkPossibilities()
@@ -150,7 +173,6 @@ class Solution:
                                     num not in filledNumDic[(row_idx, col_idx)]):
                                 # board[row_idx][col_idx] = num
                                 filledNumDic[(row_idx, col_idx)].append(num)
-
                     elif row_idx < 3 and 3 <= col_idx < 6:
                         for num in all_possible_box_2:
                             if (findinRow(num, board[row_idx]) == False) and (
@@ -163,10 +185,6 @@ class Solution:
 
                     elif row_idx < 3 and 6 <= col_idx < 9:
                         for num in all_possible_box_3:
-                            # print('trying : ', num, 'in :', row_idx , ' ',col_idx)
-                            # print('findinRow(num, board[row_idx])',findinRow(num, board[row_idx]))
-                            # print('findinColumn(num, board, col_idx)',findinColumn(num, board, col_idx))
-                            # print('filledNumDic[(row_idx,col_idx)]',filledNumDic[(row_idx,col_idx)])
                             if (findinRow(num, board[row_idx]) == False) and (
                                     findinColumn(num, board, col_idx) == False) and (
                                     findinSquare(num, box_3) == False) and (
@@ -233,6 +251,15 @@ class Solution:
                                 filledNumDic[(row_idx, col_idx)].append(num)
             extractEachSquare(board)
             keys_to_be_deleted = []
+            completeSquare(box_1)
+            completeSquare(box_2)
+            completeSquare(box_3)
+            completeSquare(box_4)
+            completeSquare(box_5)
+            completeSquare(box_6)
+            completeSquare(box_7)
+            completeSquare(box_8)
+            completeSquare(box_9)
             while (keys_to_be_deleted == []):
                 for k, v in filledNumDic.items():
                     if len(v) == 1:
@@ -247,13 +274,13 @@ class Solution:
                     check = False
                     break
         # print(filledNumDic)
-        print(len(filledNumDic))
-        last_filledNumDic = filledNumDic
-        for k, v in filledNumDic.items():
-            if len(v) == 2:
-                print(k)
+        # print(len(filledNumDic))
+        # last_filledNumDic = filledNumDic
+        # for k,v in filledNumDic.items():
+        #     if len(v) == 2:
+        #         print(k)
 
-        print(box_2[-3:])
+
 
 
 
