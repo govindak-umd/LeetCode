@@ -136,13 +136,35 @@ class Solution:
                             idx = flat_list.index(c)
                             for i in all_numbers:
                                 if i not in flat_list:
-                                    if (box == box_1) or (box == box_4) or (box == box_7):
+                                    if (box == box_1):
+                                        print('Found in box_1 .. ')
                                         board[row][col] = i
-                                    if (box == box_2) or (box == box_5) or (box == box_8):
-                                        print('here', row_idx, col_idx, box)
+                                    elif (box == box_4):
+                                        print('Found in box_4 .. ')
+                                        board[row + 3][col] = i
+                                    elif (box == box_7):
+                                        print('Found in box_7 .. ')
+                                        board[row + 6][col] = i
+
+                                    elif (box == box_2):
+                                        print('Found in box_2 .. ')
                                         board[row][col + 3] = i
-                                    if (box == box_3) or (box == box_6) or (box == box_9):
+                                    elif (box == box_5):
+                                        print('Found in box_5 .. ')
+                                        board[row + 3][col + 3] = i
+                                    elif (box == box_8):
+                                        print('Found in box_8 .. ')
+                                        board[row + 6][col + 3] = i
+
+                                    elif (box == box_3):
+                                        print('Found in box_3 .. ')
                                         board[row][col + 6] = i
+                                    elif (box == box_6):
+                                        print('Found in box_6 .. ')
+                                        board[row + 3][col + 6] = i
+                                    else:
+                                        print('Found in box_9.. ')
+                                        board[row + 6][col + 6] = i
 
         extractEachSquare(board)
         checkPossibilities()
@@ -155,6 +177,7 @@ class Solution:
 
         while check == True:
             filledNumDic = {}
+
             for row_idx in range(9):
                 for col_idx in range(9):
                     if board[row_idx][col_idx] == '.':
@@ -174,6 +197,7 @@ class Solution:
                                 # board[row_idx][col_idx] = num
                                 filledNumDic[(row_idx, col_idx)].append(num)
                     elif row_idx < 3 and 3 <= col_idx < 6:
+
                         for num in all_possible_box_2:
                             if (findinRow(num, board[row_idx]) == False) and (
                                     findinColumn(num, board, col_idx) == False) and (
@@ -242,24 +266,19 @@ class Solution:
                                 filledNumDic[(row_idx, col_idx)].append(num)
                     elif 6 <= row_idx < 9 and 6 <= col_idx < 9:
                         for num in all_possible_box_9:
-                            if (findinRow(num, board[row_idx]) == False) and (
-                                    findinColumn(num, board, col_idx) == False) and (
-                                    findinSquare(num, box_9) == False) and (
-                                    box_9[row_idx - 6][col_idx - 6] not in all_numbers) and (
-                                    num not in filledNumDic[(row_idx, col_idx)]):
-                                # board[row_idx][col_idx] = num
-                                filledNumDic[(row_idx, col_idx)].append(num)
+                            try:
+                                if (findinRow(num, board[row_idx]) == False) and (
+                                        findinColumn(num, board, col_idx) == False) and (
+                                        findinSquare(num, box_9) == False) and (
+                                        box_9[row_idx - 6][col_idx - 6] not in all_numbers) and (
+                                        num not in filledNumDic[(row_idx, col_idx)]):
+                                    # board[row_idx][col_idx] = num
+                                    # pass
+                                    filledNumDic[(row_idx, col_idx)].append(num)
+                            except:
+                                pass
             extractEachSquare(board)
             keys_to_be_deleted = []
-            completeSquare(box_1)
-            completeSquare(box_2)
-            completeSquare(box_3)
-            completeSquare(box_4)
-            completeSquare(box_5)
-            completeSquare(box_6)
-            completeSquare(box_7)
-            completeSquare(box_8)
-            completeSquare(box_9)
             while (keys_to_be_deleted == []):
                 for k, v in filledNumDic.items():
                     if len(v) == 1:
@@ -269,17 +288,20 @@ class Solution:
                     del filledNumDic[k]
                 curr_len = len(filledNumDic)
                 if past_len != curr_len:
+                    print('Checking for single element left .. ')
+                    completeSquare(box_1)
+                    completeSquare(box_2)
+                    completeSquare(box_3)
+                    completeSquare(box_4)
+                    completeSquare(box_5)
+                    completeSquare(box_6)
+                    completeSquare(box_7)
+                    completeSquare(box_8)
+                    completeSquare(box_9)
                     past_len = curr_len
                 else:
                     check = False
                     break
-        # print(filledNumDic)
-        # print(len(filledNumDic))
-        # last_filledNumDic = filledNumDic
-        # for k,v in filledNumDic.items():
-        #     if len(v) == 2:
-        #         print(k)
-
 
 
 
