@@ -1,3 +1,5 @@
+# Answer pending, will be completed at a later date.
+
 class Solution:
 
     def solveSudoku(self, board: List[List[str]]) -> None:
