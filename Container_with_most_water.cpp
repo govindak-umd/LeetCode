@@ -1,7 +1,6 @@
 class Solution {
 public:
     int maxArea(vector<int>& height) {
-        std::vector<int> all_covered;
         int area = 0;
         int new_area = 0;
         for (int i = 0; i<height.size(); i++){
