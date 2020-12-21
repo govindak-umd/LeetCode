@@ -3,8 +3,9 @@ public:
     int maxArea(vector<int>& height) {
         int area = 0;
         int new_area = 0;
-        for (int i = 0; i<height.size(); i++){
-            for (int i2 = i; i2<height.size(); i2++){
+        int len = height.size();
+        for (int i = 0; i<len; i++){
+            for (int i2 = i; i2<len; i2++){
                 if (height[i2] > height[i]){
                     new_area = height[i] * (i2-i);
                 }
