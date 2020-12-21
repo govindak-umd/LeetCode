@@ -16,9 +16,7 @@ public:
                     area = new_area;
                 }
             }
-            std :: cout << " -- " << std::endl;
         }
-        std :: cout << " final area : " << area << std :: endl;
         return area;
     }
 };
