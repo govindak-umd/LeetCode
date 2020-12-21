@@ -1,27 +1,24 @@
 class Solution {
 public:
     int maxArea(vector<int>& height) {
-        int prev;
-        int idx = 0;
         std::vector<int> all_covered;
-        int area;
-        for (auto vec: height){
-            all_covered.push_back(vec);
-            std::cout << vec << std :: endl;
-            if (idx > 0){
-                for (int i = 0; i <= all_covered.size(); i++ ){
-                    std ::cout << i << vec << std :: endl;
-                    // if (all_covered[i] >= vec){
-                    //     int new_area = vec*(i-1);
-                    //     if (new_area > area)
-                    //         area = new_area;
-                    //     std :: cout << "area " << vec << " and " << i << " = "<< vec*(i-1) << std :: endl;
-                    // }
+        int area = 0;
+        int new_area = 0;
+        for (int i = 0; i<height.size(); i++){
+            for (int i2 = i; i2<height.size(); i2++){
+                if (height[i2] > height[i]){
+                    new_area = height[i] * (i2-i);
+                }
+                else {
+                    new_area = height[i2] * (i2-i);
+                }
+                if(new_area > area){
+                    area = new_area;
                 }
             }
-            idx +=1;
-            std :: cout << " --- " << std :: endl;
+            std :: cout << " -- " << std::endl;
         }
+        std :: cout << " final area : " << area << std :: endl;
         return area;
     }
 };
